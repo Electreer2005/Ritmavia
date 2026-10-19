@@ -1,0 +1,88 @@
+.page { width: 100%; min-width: 0; }
+.hero {
+  display: flex; align-items: center; gap: 30px;
+  padding: 36px; min-height: 250px;
+  border: 1px solid var(--border-selected); border-radius: 24px;
+  background: radial-gradient(ellipse at 100% 0%, rgb(167 139 250 / 16%), transparent 60%), var(--gradient-hero);
+}
+.avatar {
+  display: grid; place-items: center; flex: 0 0 126px;
+  width: 126px; height: 126px; border: 4px solid rgb(245 243 255 / 12%); border-radius: 50%;
+  background: var(--gradient-brand); color: var(--on-primary); font-size: 36px; font-weight: 800;
+}
+.heroContent { min-width: 0; }
+.eyebrow { display: block; margin-bottom: 12px; color: var(--primary-hover); font-size: 9px; font-weight: 700; letter-spacing: 2px; }
+.title { margin: 0; color: var(--text-primary); font-size: clamp(30px,4vw,48px); font-weight: 800; letter-spacing: -.05em; line-height: 1.15; overflow-wrap: anywhere; }
+.bio { max-width: 480px; margin: 14px 0 18px; color: var(--text-secondary); font-size: 12px; line-height: 1.8; white-space: pre-wrap; overflow-wrap: anywhere; }
+.editButton,
+.primary,
+.cancel { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 44px; padding: 11px 18px; border: 1px solid var(--border-selected); border-radius: var(--radius-full); font: inherit; font-size: 11px; font-weight: 700; cursor: pointer; transition: background-color var(--transition-fast), transform var(--transition-fast); }
+.editButton { color: var(--primary-hover); background: var(--bg-selected); }
+.primary { background: var(--gradient-brand); color: var(--on-primary); border-color: transparent; }
+.cancel { background: var(--bg-surface); color: var(--text-secondary); border-color: var(--border); }
+.feedback { margin: 12px 0; color: var(--success); font-size: 12px; }
+.feedback:empty { margin: 0; }
+.form { display: flex; flex-direction: column; gap: 16px; margin-top: 24px; padding: 26px; border: 1px solid var(--border-soft, var(--border)); border-radius: var(--radius-lg); background: var(--bg-sidebar); }
+.form h2,
+.sectionHeading h2 { margin: 0; font-size: 21px; font-weight: 800; letter-spacing: -.6px; }
+.field { display: flex; flex-direction: column; gap: 8px; color: var(--text-secondary); font-size: 12px; font-weight: 600; }
+.field input,
+.field textarea { width: 100%; min-width: 0; padding: 12px 14px; border: 1px solid var(--border); border-radius: var(--radius-md); background: var(--bg-main); color: var(--text-primary); font: inherit; font-weight: 400; font-size: 16px; line-height: 1.6; }
+.field textarea { resize: vertical; min-height: 100px; }
+.field input::placeholder,
+.field textarea::placeholder { color: var(--text-muted); }
+.optional { color: var(--text-muted); font-size: 10px; font-weight: 400; }
+.characterCount { margin-top: -10px; color: var(--text-muted); text-align: right; font-size: 10px; }
+.actions { display: flex; flex-wrap: wrap; gap: 10px; }
+.error { margin: 0; color: var(--error); font-size: 12px; line-height: 1.7; }
+.stats { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 18px; margin: 28px 0 36px; }
+.stat { display: grid; grid-template-columns: 26px minmax(0,1fr); gap: 5px 12px; align-items: center; padding: 22px; border: 1px solid var(--border-soft,var(--border)); border-radius: var(--radius-lg); background: var(--bg-sidebar); }
+.stat > svg { color: var(--primary); }
+.stat strong { color: var(--text-primary); font-size: 28px; line-height: 1.2; }
+.stat > span { grid-column: 2; color: var(--text-muted); font-size: 11px; }
+.sectionHeading { margin-bottom: 20px; }
+.sectionHeading .eyebrow { color: var(--text-muted); font-size: 8px; margin-bottom: 7px; }
+.shortcuts { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 18px; }
+.shortcut { display: flex; align-items: center; gap: 12px; padding: 20px; min-width: 0; border: 1px solid var(--border-soft,var(--border)); border-radius: var(--radius-lg); background: var(--bg-sidebar); color: var(--text-primary); text-decoration: none; transition: border-color var(--transition-fast), background-color var(--transition-fast); }
+.shortcut > span:nth-child(2) { flex: 1; min-width: 0; }
+.shortcutIcon { display: grid; place-items: center; flex: 0 0 44px; width: 44px; height: 44px; border-radius: var(--radius-md); background: var(--bg-selected); color: var(--primary); }
+.shortcut strong { display: block; font-size: 12px; }
+.shortcut small { display: block; margin-top: 4px; color: var(--text-muted); font-size: 10px; line-height: 1.7; }
+.shortcut > svg { color: var(--text-muted); }
+.localNote { margin: 24px 0 0; max-width: 620px; color: var(--text-muted); font-size: 11px; line-height: 1.8; }
+.editButton:focus-visible,
+.primary:focus-visible,
+.cancel:focus-visible,
+.shortcut:focus-visible,
+.field input:focus-visible,
+.field textarea:focus-visible { outline: 2px solid var(--primary); outline-offset: 3px; }
+@media (hover: hover) {
+  .editButton:hover { background: var(--bg-hover); }
+  .primary:hover { transform: translateY(-1px); }
+  .cancel:hover { color: var(--text-primary); background: var(--bg-hover); }
+  .shortcut:hover { background: var(--bg-surface); border-color: var(--border-selected); }
+}
+@media (max-width: 1000px) { .shortcuts { grid-template-columns: 1fr; } }
+@media (max-width: 760px) {
+  .hero { gap: 20px; padding: 26px; min-height: 220px; border-radius: 20px; }
+  .avatar { flex-basis: 90px; width: 90px; height: 90px; font-size: 28px; }
+  .stats { gap: 12px; }
+  .stat { padding: 16px; gap: 5px 8px; }
+}
+@media (max-width: 480px) {
+  .hero { flex-direction: column; align-items: flex-start; padding: 24px 20px; }
+  .avatar { flex: none; width: 80px; height: 80px; }
+  .form { padding: 20px 16px; }
+  .stat { grid-template-columns: 1fr; padding: 16px; }
+  .stat > span { grid-column: 1; }
+  .stat strong { font-size: 25px; }
+  .shortcut { padding: 16px; }
+}
+@media (prefers-reduced-motion: reduce) { .editButton, .primary, .cancel, .shortcut { transition: none; } }
+
+.accountEmail{margin:12px 0 0;color:var(--primary-hover);font-size:12px;overflow-wrap:anywhere}
+.accountActions{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.accountActions a{text-decoration:none}
+.logout{padding:12px 18px;min-height:44px;border:1px solid var(--border);border-radius:var(--radius-full);color:var(--error);background:var(--bg-surface);font-size:11px;font-weight:700}
+.logout:focus-visible{outline:2px solid var(--primary);outline-offset:3px}
+.logout:disabled,.primary:disabled,.editButton:disabled,.cancel:disabled{opacity:.5;cursor:default}
