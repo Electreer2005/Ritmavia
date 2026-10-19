@@ -27,7 +27,7 @@ export default function Home() {
         <div className={styles.heroVisual} aria-hidden="true">
           <div className={styles.glassDisc}><div className={styles.discRing}><div className={styles.discCore}><Headphones size={38} /></div></div></div>
           <span className={styles.floatingTag}><span className={styles.equalizer}><i /><i /><i /><i /></span> Tu próximo descubrimiento</span>
-          <span className={styles.orb orbOne} /><span className={styles.orb orbTwo} />
+          <span className={`${styles.orb} ${styles.orbOne}`} />><span className={styles.orb orbTwo} />
         </div>
       </section>
 
