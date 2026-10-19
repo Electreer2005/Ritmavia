@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { FavoritesContext } from '../store/favoritesContext'
 import { useAuth } from '../hooks/useAuth'
-import { tracks as demoTracks } from '../data/mockData'
 import { getYouTubeVideos, hasYouTubeKey } from '../services/youtube'
 
 function readFavorites(key) {
@@ -33,7 +32,7 @@ export default function FavoritesProvider({ children }) {
   }, [key, youtubeIds])
   const remoteTracks = catalog.signature === signature ? catalog.tracks : []
   const favoriteTracks = favorites.map(id => {
-    const known = demoTracks.find(track => track.id === id) || remoteTracks.find(track => track.id === id)
+   const known = remoteTracks.find(track => track.id === id)
     if (known) return known
     if (/^yt:[\w-]{11}$/.test(id)) return { id, videoId: id.slice(3), title: 'Video guardado', artistName: 'YouTube', albumTitle: 'YouTube', source: 'youtube' }
     return null
