@@ -1,0 +1,138 @@
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+
+  padding: 14px 24px;
+
+  background: color-mix(in srgb, var(--bg-surface) 85%, transparent);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border-soft, var(--border));
+}
+
+
+
+/* =========================================================
+   SEARCH
+   ========================================================= */
+
+.search {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  width: 100%;
+  max-width: 340px;
+  height: 40px;
+  padding: 0 14px;
+
+  background: var(--bg-main);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md, 10px);
+
+  color: var(--text-secondary);
+  cursor: text;
+
+  transition:
+    border-color var(--transition-fast, 150ms ease),
+    background-color var(--transition-fast, 150ms ease),
+    box-shadow var(--transition-fast, 150ms ease);
+}
+
+.search:hover {
+  border-color: var(--text-muted);
+}
+
+/* Cuando el input interno tiene foco, el contenedor reacciona */
+.search:focus-within {
+  border-color: var(--primary);
+  background: var(--bg-surface);
+  box-shadow: 0 0 0 3px rgb(167 139 250 / 15%);
+}
+
+.search .icon {
+  flex-shrink: 0;
+  color: var(--text-muted);
+  transition: color var(--transition-fast, 150ms ease);
+}
+
+.search:focus-within .icon {
+  color: var(--primary);
+}
+
+.search input {
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+
+  background: transparent;
+  border: none;
+  outline: none;
+
+  color: var(--text-primary);
+  font-size: 14px;
+  font-family: inherit;
+}
+
+.search input::placeholder {
+  color: var(--text-muted);
+  opacity: 0.85;
+}
+
+/* Ocultar el botón "x" nativo del input[type=search] en WebKit */
+.search input::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  background: var(--text-muted);
+  -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'><line x1='18' y1='6' x2='6' y2='18'/><line x1='6' y1='6' x2='18' y2='18'/></svg>") center / contain no-repeat;
+  mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'><line x1='18' y1='6' x2='6' y2='18'/><line x1='6' y1='6' x2='18' y2='18'/></svg>") center / contain no-repeat;
+  cursor: pointer;
+  opacity: 0.6;
+  transition: opacity var(--transition-fast, 150ms ease);
+}
+
+.search input::-webkit-search-cancel-button:hover {
+  opacity: 1;
+}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (width <= 760px) {
+  .header {
+    padding: 12px 16px;
+    gap: 10px;
+  }
+
+  .title {
+    font-size: 16px;
+  }
+
+  .search {
+    max-width: none;
+    height: 38px;
+    padding: 0 12px;
+  }
+
+  .search input {
+    font-size: 13.5px;
+  }
+}
+.title{font-size:10px;letter-spacing:1.5px;color:var(--text-muted)}
+.authLink{display:flex;align-items:center;justify-content:center;gap:8px;flex-shrink:0;min-height:40px;max-width:170px;padding:8px 14px;border:1px solid var(--border-selected);border-radius:var(--radius-full);background:var(--bg-selected);color:var(--primary-hover);font-size:12px}
+.authLink span{overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+@media(max-width:1000px){.title{display:none}}
+@media(max-width:480px){.authLink{width:40px;padding:8px}.authLink span{display:none}}
