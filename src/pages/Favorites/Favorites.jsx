@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'
 import { useFavorites } from '../../hooks/useFavorites'
 import { usePlayerStore } from '../../store/playerStore'
 import TrackList from '../../components/TrackList/TrackList'
-import CatalogNotice from '../../components/CatalogNotice'
 import styles from './Favorites.module.css'
 
 export default function Favorites() {
@@ -25,8 +24,8 @@ export default function Favorites() {
         <Link to="/buscar" className={styles.secondary}><Search size={16} aria-hidden="true" />Encontrar más música</Link>
       </div>
       <div className={styles.sectionHeading}><h2>Tu selección</h2><Heart size={18} aria-hidden="true" /></div>
-      <div className={styles.notice}>{saved.some(track => track.videoId) ? <p>Videos de YouTube guardados. El video permanece visible durante la reproducción.</p> : <CatalogNotice />}</div>
-      <div className={styles.panel}><TrackList tracks={saved} emptyMessage="Tu colección empieza con un corazón. Agregá canciones a favoritos desde Inicio o Buscar." /></div>
+      {saved.some(track => track.videoId) && <p className={styles.notice}>Videos de YouTube guardados. La disponibilidad depende de cada video y su región.</p>}
+      <div className={styles.panel}><TrackList tracks={saved} emptyMessage="Tu colección empieza con un corazón. Agregá canciones a favoritos desde Buscar." /></div>
     </section>
   )
 }
