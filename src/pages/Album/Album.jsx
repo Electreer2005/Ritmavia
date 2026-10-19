@@ -1,17 +1,15 @@
 import { Link, useParams } from 'react-router-dom'
-import { Play } from 'lucide-react'
-import { getAlbumById, getArtistById, getTracksByAlbum } from '../../data/mockData'
-import { usePlayerStore } from '../../store/playerStore'
-import TrackList from '../../components/TrackList/TrackList'
-import CatalogNotice from '../../components/CatalogNotice'
+import { Search, Music2 } from 'lucide-react'
+
 export default function Album() {
   const { albumId } = useParams()
-  const album = getAlbumById(albumId)
-  const playTrack = usePlayerStore(s => s.playTrack)
-  if (!album) return <section><h1>Álbum no encontrado</h1><Link className="text-button" to="/">Volver al inicio</Link></section>
-  const tracks = getTracksByAlbum(album.id)
-  return <section>
-    <div className="album-heading"><img src={album.cover} alt={'Portada de ejemplo de ' + album.title} /><div><span className="eyebrow">ÁLBUM</span><h1>{album.title}</h1><p className="muted">{getArtistById(album.artistId)?.name} · {album.year} · {tracks.length} canciones</p><button className="primary" disabled={!tracks.length} onClick={() => playTrack(tracks[0], tracks)}><Play size={18} fill="currentColor" />Reproducir álbum</button></div></div>
-    <CatalogNotice /><TrackList tracks={tracks} />
-  </section>
+  return (
+    <section className="glass-empty" aria-labelledby="album-title">
+      <span className="glass-empty-icon"><Music2 size={30} /></span>
+      <span className="eyebrow">RITMAVIA · DESCUBRÍ MÚSICA</span>
+      <h1 id="album-title">Este álbum ya no forma parte de la demo</h1>
+      <p>Quitamos los álbumes y canciones de ejemplo. Buscá música real y reproducí los videos disponibles en YouTube.</p>
+      <Link className="text-button" to={'/buscar?q=' + encodeURIComponent(albumId || '')}><Search size={17} /> Buscar música</Link>
+    </section>
+  )
 }
