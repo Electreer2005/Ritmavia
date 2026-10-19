@@ -3,13 +3,11 @@ import { Heart, Play, Search } from 'lucide-react'
 import { useFavorites } from '../../hooks/useFavorites'
 import { usePlayerStore } from '../../store/playerStore'
 import TrackList from '../../components/TrackList/TrackList'
-import CatalogNotice from '../../components/CatalogNotice'
 import styles from './Library.module.css'
 
 export default function Library() {
   const { favoriteTracks: saved } = useFavorites()
   const playTrack = usePlayerStore(s => s.playTrack)
-
   return (
     <section className={styles.page} aria-labelledby="library-title">
       <header className={styles.hero}>
@@ -21,19 +19,13 @@ export default function Library() {
           <span className={styles.count}>{saved.length} {saved.length === 1 ? 'canción guardada' : 'canciones guardadas'}</span>
         </div>
       </header>
-
       <div className={styles.toolbar}>
-        <button type="button" className={styles.primary} disabled={!saved.length} onClick={() => playTrack(saved[0], saved)}>
-          <Play size={17} fill="currentColor" aria-hidden="true" />Escuchar favoritos
-        </button>
+        <button type="button" className={styles.primary} disabled={!saved.length} onClick={() => playTrack(saved[0], saved)}><Play size={17} fill="currentColor" aria-hidden="true" />Escuchar favoritos</button>
         <Link className={styles.secondary} to="/buscar"><Search size={16} aria-hidden="true" />Descubrir música</Link>
       </div>
-
       <div className={styles.sectionHeading}><h2>Mis favoritos</h2><Heart size={18} aria-hidden="true" /></div>
-      <div className={styles.notice}>{saved.some(track => track.videoId) ? <p>Videos de YouTube guardados. El video permanece visible durante la reproducción.</p> : <CatalogNotice />}</div>
-      <div className={styles.panel}>
-        <TrackList tracks={saved} emptyMessage="Todavía no guardaste favoritos. Tocá el corazón de una canción para encontrarla acá." />
-      </div>
+      {saved.some(track => track.videoId) && <p className={styles.notice}>Tu biblioteca reúne los videos que guardaste desde la búsqueda.</p>}
+      <div className={styles.panel}><TrackList tracks={saved} emptyMessage="Todavía no guardaste favoritos. Tocá el corazón de una canción para encontrarla acá." /></div>
     </section>
   )
 }
