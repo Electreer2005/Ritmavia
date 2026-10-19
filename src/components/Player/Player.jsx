@@ -1,5 +1,4 @@
 import { Music2, Volume2 } from 'lucide-react'
-import { getAlbumById, getArtistById } from '../../data/mockData'
 import { usePlayerStore } from '../../store/playerStore'
 import { useAudio } from '../../hooks/useAudio'
 import Controls from './Controls'
@@ -9,9 +8,7 @@ import styles from './Player.module.css'
 export default function Player() {
   const player = usePlayerStore()
   const audioRef = useAudio()
-  const currentAlbum = getAlbumById(player.currentTrack?.albumId)
-  const cover = player.currentTrack?.cover || currentAlbum?.cover
-  const currentArtist = getArtistById(player.currentTrack?.artistId)
+ const cover = player.currentTrack?.cover || player.currentTrack?.thumbnail
 
   return (
     <section className={styles.player} aria-label="Reproductor">
@@ -34,7 +31,7 @@ export default function Player() {
             {player.currentTrack?.title || 'Elegí una canción'}
           </strong>
           <span className={styles.artist}>
-            {player.currentTrack?.artistName || currentArtist?.name || 'Todo listo para escuchar'}
+            {player.currentTrack?.artistName || player.currentTrack?.artist || 'Todo listo para escuchar'}
           </span>
         </div>
       </div>
