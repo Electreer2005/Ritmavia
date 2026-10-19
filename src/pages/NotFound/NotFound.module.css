@@ -1,0 +1,154 @@
+/* =========================================================
+   NOT FOUND
+   ========================================================= */
+
+.NotFound {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
+  min-height: calc(100dvh - var(--player-height, 112px) - 80px);
+  padding: 48px 24px;
+  gap: 8px;
+
+  background: var(--bg-elevated);
+  border-radius: var(--radius-lg, 16px);
+  border: 1px solid var(--border-soft);
+}
+
+/* ===== Ícono decorativo ===== */
+
+.badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 72px;
+  height: 72px;
+  margin-bottom: 16px;
+
+  color: var(--primary);
+  background: var(--bg-selected);
+  border: 1px solid var(--border-selected);
+  border-radius: 50%;
+  box-shadow: var(--shadow-glow);
+  animation: float 4s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+/* ===== Código 404 ===== */
+
+.code {
+  font-size: clamp(56px, 10vw, 96px);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.03em;
+
+  background: var(--gradient-brand);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  margin: 0;
+}
+
+/* ===== Título ===== */
+
+.title {
+  font-size: clamp(18px, 2.4vw, 24px);
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+
+/* ===== Subtítulo ===== */
+
+.subtitle {
+  max-width: 420px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  margin: 4px 0 20px;
+}
+
+/* ===== Botón ===== */
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  height: 42px;
+  padding: 0 22px;
+
+  color: var(--on-primary);
+  background: var(--gradient-brand);
+  border-radius: var(--radius-full, 999px);
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+
+  box-shadow: 0 6px 18px rgb(167 139 250 / 30%);
+  transition:
+    transform var(--transition-fast, 150ms ease),
+    box-shadow var(--transition-fast, 150ms ease),
+    filter var(--transition-fast, 150ms ease);
+}
+
+.button:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.08);
+  box-shadow:
+    0 8px 24px rgb(167 139 250 / 40%),
+    0 0 32px rgb(167 139 250 / 22%);
+}
+
+.button:active {
+  transform: translateY(0) scale(0.98);
+}
+
+.button:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 3px;
+}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 760px) {
+  .NotFound {
+    min-height: auto;
+    padding: 40px 20px;
+    border-radius: var(--radius-md, 10px);
+  }
+
+  .badge {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 12px;
+  }
+
+  .subtitle {
+    font-size: 13px;
+    margin-bottom: 16px;
+  }
+
+  .button {
+    height: 40px;
+    padding: 0 18px;
+    font-size: 13.5px;
+  }
+}
+
+/* Respeta la preferencia de movimiento reducido */
+@media (prefers-reduced-motion: reduce) {
+  .badge {
+    animation: none;
+  }
+}
