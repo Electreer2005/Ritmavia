@@ -1,0 +1,126 @@
+.trackList { width: 100%; min-width: 0; }
+.heading,
+.row { display: grid; grid-template-columns: 40px minmax(0, 1fr) minmax(100px, .55fr) 40px; align-items: center; gap: 12px; }
+.heading { padding: 10px 12px 14px; margin-bottom: 4px; border-bottom: 1px solid var(--border-soft, var(--border)); color: var(--text-muted); font-size: 9px; font-weight: 700; letter-spacing: 1px; }
+.heading > :first-child { text-align: center; }
+.list { display: flex; flex-direction: column; gap: 3px; margin: 0; padding: 0; list-style: none; }
+.row {
+  position: relative;
+  min-height: 68px;
+  padding: 10px 12px;
+  border: 1px solid transparent;
+  border-radius: var(--radius-md, 10px);
+  background: transparent;
+  transition: background-color var(--transition-fast, 150ms ease), border-color var(--transition-fast, 150ms ease);
+}
+.selected { background: var(--bg-selected); border-color: var(--border-selected); }
+.playButton,
+.favoriteButton {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-full, 999px);
+  background: transparent;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: color var(--transition-fast, 150ms ease), background-color var(--transition-fast, 150ms ease), transform var(--transition-fast, 150ms ease);
+}
+.number,
+.playIcon { grid-area: 1 / 1; }
+.number { color: var(--text-muted); font-size: 10px; font-variant-numeric: tabular-nums; opacity: 0; }
+.playIcon { display: grid; place-items: center; opacity: 1; }
+.selected .playButton { color: var(--primary); }
+.trackButton {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+  min-height: 44px;
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-sm, 6px);
+  background: transparent;
+  color: var(--text-primary);
+  text-align: left;
+  cursor: pointer;
+}
+.cover {
+  display: grid;
+  place-items: center;
+  flex: 0 0 44px;
+  width: 44px;
+  height: 44px;
+  overflow: hidden;
+  border: 1px solid var(--border-soft, var(--border));
+  border-radius: var(--radius-sm, 6px);
+  color: var(--primary);
+  background: var(--bg-surface);
+}
+.cover img { display: block; width: 100%; height: 100%; max-width: none; object-fit: cover; }
+.meta { display: flex; flex-direction: column; gap: 4px; min-width: 0; line-height: 1.4; }
+.title,
+.artist,
+.album { display: block; min-width: 0; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+.title { color: var(--text-primary); font-size: 12px; font-weight: 700; }
+.artist { color: var(--text-secondary); font-size: 10px; }
+.album { color: var(--text-muted); font-size: 11px; }
+.selected .title { color: var(--primary-hover); }
+.liked { color: var(--primary); }
+.playButton:focus-visible,
+.favoriteButton:focus-visible,
+.trackButton:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; }
+.playButton:active,
+.favoriteButton:active { transform: scale(.94); }
+.empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  min-height: 180px;
+  padding: 32px 20px;
+  color: var(--text-muted);
+  text-align: center;
+}
+.empty > svg { color: var(--primary); }
+.empty p { max-width: 320px; margin: 0; font-size: 12px; line-height: 1.8; }
+@media (hover: hover) and (pointer: fine) {
+  .row:not(.selected) .number { opacity: 1; }
+  .row:not(.selected) .playIcon { opacity: 0; }
+  .row:hover .number,
+  .row:focus-within .number { opacity: 0; }
+  .row:hover .playIcon,
+  .row:focus-within .playIcon { opacity: 1; }
+  .row:hover:not(.selected) { background: var(--bg-surface); }
+  .selected:hover { border-color: var(--primary); }
+  .playButton:hover,
+  .favoriteButton:hover { background: var(--bg-hover); color: var(--primary-hover); }
+}
+@media (max-width: 760px) {
+  .heading,
+  .row { grid-template-columns: 36px minmax(0, 1fr) 36px; gap: 8px; padding-inline: 8px; }
+  .album,
+  .albumHeading { display: none; }
+  .row { min-height: 64px; padding-block: 8px; }
+  .playButton,
+  .favoriteButton { width: 36px; height: 40px; }
+  .trackButton { gap: 10px; }
+  .cover { flex-basis: 40px; width: 40px; height: 40px; }
+  .title { font-size: 11px; }
+}
+@media (max-width: 380px) {
+  .heading,
+  .row { gap: 4px; padding-inline: 4px; }
+  .trackButton { gap: 8px; }
+  .cover { flex-basis: 34px; width: 34px; height: 34px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .row,
+  .playButton,
+  .favoriteButton { transition: none; }
+}
