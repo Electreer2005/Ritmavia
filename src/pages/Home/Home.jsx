@@ -1,70 +1,56 @@
 import { Link } from 'react-router-dom'
-import { Play, Headphones, ArrowUpRight } from 'lucide-react'
-import { albums, artists, tracks } from '../../data/mockData'
-import AlbumCard from '../../components/Cards/AlbumCard'
-import TrackList from '../../components/TrackList/TrackList'
-import CatalogNotice from '../../components/CatalogNotice'
+import { Play, Headphones, ArrowUpRight, Sparkles, Search, Music2, Radio, Waves } from 'lucide-react'
 import styles from './Home.module.css'
 
-export default function Home() {
+const discoveries = [
+  { label: 'Pop argentino', query: 'pop argentino hits', icon: Waves },
+  { label: 'Indie y alternativo', query: 'indie alternative music', icon: Sparkles },
+  { label: 'Electrónica', query: 'electronic music mix', icon: Radio },
+  { label: 'Rock nacional', query: 'rock nacional argentino', icon: Music2 },
+  { label: 'Para bajar un cambio', query: 'chill music', icon: Headphones },
+  { label: 'Lo que suena hoy', query: 'popular music 2026', icon: Play },
+]
 
+export default function Home() {
   return (
     <div className={styles.home}>
       <section className={styles.hero} aria-labelledby="home-title">
+        <div className={styles.heroGlow} aria-hidden="true" />
         <div className={styles.heroContent}>
-          <span className={styles.eyebrow}>DALE PLAY A TU DÍA</span>
-          <h1 className={styles.title} id="home-title">
-            Encontrá tu<br /><em>próximo favorito.</em>
-          </h1>
-          <p className={styles.description}>Un espacio para descubrir, escuchar y volver a empezar.</p>
+          <span className={styles.eyebrow}><span className={styles.liveDot} /> TU MÚSICA, SIN PAUSA</span>
+          <h1 className={styles.title} id="home-title">Encontrá el sonido<br /><em>que va con vos.</em></h1>
+          <p className={styles.description}>Buscá canciones, descubrí artistas y reproducí sus videos desde un solo lugar.</p>
           <Link className={styles.primary} to="/buscar">
-            <Play size={18} fill="currentColor" aria-hidden="true" />
-            Buscar en YouTube
+            <Search size={18} aria-hidden="true" /> Explorar música <ArrowUpRight size={17} aria-hidden="true" />
           </Link>
         </div>
-
         <div className={styles.heroVisual} aria-hidden="true">
-          <div className={styles.orbit} />
-          <div className={styles.record}>
-            <div className={styles.recordCenter}><Headphones size={44} /></div>
-          </div>
-          <span className={styles.visualCaption}>TU MÚSICA, A TU RITMO.</span>
+          <div className={styles.glassDisc}><div className={styles.discRing}><div className={styles.discCore}><Headphones size={38} /></div></div></div>
+          <span className={styles.floatingTag}><span className={styles.equalizer}><i /><i /><i /><i /></span> Tu próximo descubrimiento</span>
+          <span className={styles.orb orbOne} /><span className={styles.orb orbTwo} />
         </div>
       </section>
 
-      <section className={styles.section} aria-labelledby="albums-title">
+      <section className={styles.section} aria-labelledby="discover-title">
         <div className={styles.sectionHeading}>
-          <div><span className={styles.sectionLabel}>DESCUBRÍ ALGO NUEVO</span><h2 id="albums-title">Álbumes para explorar</h2></div>
-          <span className={styles.selection}>SELECCIÓN DEL DÍA</span>
+          <div><span className={styles.sectionLabel}>UN BUEN LUGAR PARA EMPEZAR</span><h2 id="discover-title">¿Qué tenés ganas de escuchar?</h2></div>
+          <span className={styles.sectionIcon}><Sparkles size={19} /></span>
         </div>
-        <div className={styles.albumGrid}>
-          {albums.map(album => <AlbumCard album={album} key={album.id} />)}
-        </div>
-      </section>
-
-      <section className={styles.section} aria-labelledby="artists-title">
-        <div className={styles.sectionHeading}>
-          <div><span className={styles.sectionLabel}>ENCONTRÁ TU SONIDO</span><h2 id="artists-title">Artistas del catálogo</h2></div>
-          <Link className={styles.exploreLink} to="/buscar">Explorar <ArrowUpRight size={16} aria-hidden="true" /></Link>
-        </div>
-        <div className={styles.artistList}>
-          {artists.map(artist => (
-            <Link className={styles.artistCard} key={artist.id} to={'/buscar?' + new URLSearchParams({ q: artist.name })}>
-              <span className={styles.artistImage}><img src={artist.image} alt="" loading="lazy" /></span>
-              <span className={styles.artistName}>{artist.name}</span>
-              <span className={styles.artistType}>Artista</span>
+        <div className={styles.discoveryGrid}>
+          {discoveries.map(({ label, query, icon: Icon }, index) => (
+            <Link className={styles.discoveryCard} key={label} to={'/buscar?' + new URLSearchParams({ q: query })} style={{ '--delay': index * 65 + 'ms' }}>
+              <span className={styles.discoveryIcon}><Icon size={21} strokeWidth={1.7} /></span>
+              <span className={styles.discoveryLabel}>{label}</span>
+              <ArrowUpRight className={styles.discoveryArrow} size={17} />
             </Link>
           ))}
         </div>
       </section>
 
-      <section className={styles.section} aria-labelledby="tracks-title">
-        <div className={styles.sectionHeading}>
-          <div><span className={styles.sectionLabel}>UN PLAY Y ARRANCAMOS</span><h2 id="tracks-title">Dale una escucha</h2></div>
-          <span className={styles.trackCount}>{tracks.length} canciones</span>
-        </div>
-        <div className={styles.notice}><CatalogNotice /></div>
-        <div className={styles.trackPanel}><TrackList tracks={tracks} /></div>
+      <section className={styles.bottomPanel}>
+        <div className={styles.bottomIcon}><Music2 size={24} /></div>
+        <div><h2>La próxima canción puede ser tu favorita.</h2><p>Buscá por artista, tema o banda. Los resultados llegan desde YouTube, no de un catálogo de demostración.</p></div>
+        <Link to="/buscar" className={styles.textLink}>Encontrar música <ArrowUpRight size={16} /></Link>
       </section>
     </div>
   )
