@@ -10,7 +10,10 @@
   height: calc(100dvh - var(--player-height, 112px) - env(safe-area-inset-bottom, 0px));
   overflow-y: auto;
   background: var(--bg-sidebar);
+  backdrop-filter: blur(24px) saturate(145%);
+  -webkit-backdrop-filter: blur(24px) saturate(145%);
   border-right: 1px solid var(--border-soft, var(--border));
+  box-shadow: inset -1px 0 0 rgb(255 255 255 / 3%);
 }
 .brand {
   display: flex;
