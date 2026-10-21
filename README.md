@@ -13,8 +13,11 @@ Compilar: npm run build
 Revisar código: npm run lint
 Pruebas: node --test tests/auth.test.js
 
-## Catálogo de música
+## Catálogo musical combinado
 
-La búsqueda principal utiliza la API pública de Audius para explorar pistas de artistas independientes. La reproducción usa el endpoint de stream de Audius dentro del reproductor HTML5 de Ritmavia; no se descargan ni se alojan archivos de audio en el proyecto.
+- Audius: búsqueda y streaming de audio independiente dentro del reproductor HTML5.
+- YouTube: búsqueda de videos musicales mediante YouTube Data API y reproducción con el reproductor oficial integrado.
 
-Que la API esté disponible sin coste no garantiza derechos comerciales sobre cada pista ni autoriza por sí solo la monetización de Ritmavia. Antes de un lanzamiento público o monetizado, revisá las condiciones actuales de Audius, los términos aplicables y los derechos/licencias de las pistas. El catálogo de música comercial queda pendiente de una integración con derechos expresos para ese uso.
+Para activar resultados de YouTube, configurá `VITE_YOUTUBE_API_KEY` en `.env.local`, habilitá YouTube Data API v3 en Google Cloud y restringí la clave al dominio de desarrollo/producción. No publiques una clave sin restricciones.
+
+Los videos de YouTube no ofrecen reproducción garantizada en segundo plano y el reproductor puede detenerse al ocultarse la página. No deben tratarse como archivos de audio ni extraerse para reproducirlos fuera del reproductor oficial. Para uso comercial de ambos catálogos, verificá los términos actuales de cada plataforma y las licencias de cada pista antes del lanzamiento.
