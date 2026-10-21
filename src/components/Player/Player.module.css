@@ -156,7 +156,7 @@
 .volumeInput:focus-visible { outline: 2px solid var(--primary); outline-offset: 3px; }
 @media (max-width: 1150px) {
   .player { grid-template-columns: minmax(0, 1fr) minmax(200px, 1.5fr) 140px; gap: 18px; padding-inline: 20px; }
-  .volumeInput { width: 58px; }
+  .volumeInput { width: 68px; }
 }
 @media (max-width: 760px) {
   .player {
@@ -172,8 +172,11 @@
   .nowPlaying { grid-area: now; gap: 10px; }
   .cover { flex-basis: 44px; width: 44px; height: 44px; }
   .transport { grid-area: transport; gap: 4px; }
-  .rightControls { grid-area: actions; gap: 6px; }\n  .volume { gap: 6px; }
-  .volumeInput { width: 68px; }
-  .queuePanel { right: 8px; bottom: calc(100% + 8px); max-height: min(440px, 58vh); }\n  .queueToggle { width: 32px; height: 32px; }\n  .title { font-size: 12px; }
+  .rightControls { grid-area: actions; gap: 6px; }
+  .volume { gap: 6px; }
+  .volumeInput { width: 58px; }
+  .queuePanel { right: 8px; bottom: calc(100% + 8px); max-height: min(440px, 58vh); }
+  .queueToggle { width: 32px; height: 32px; }
+  .title { font-size: 12px; }
   .artist { font-size: 11px; }
 }
