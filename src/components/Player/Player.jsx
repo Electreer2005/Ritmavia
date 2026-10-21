@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { ListMusic, Music2, Volume2, X, Trash2, Play } from 'lucide-react'
+import { ListMusic, Music2, Volume2, X, Play } from 'lucide-react'
 import { usePlayerStore } from '../../store/playerStore'
 import { useAudio } from '../../hooks/useAudio'
 import Controls from './Controls'
