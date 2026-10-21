@@ -5,10 +5,10 @@ import styles from './Home.module.css'
 const discoveries = [
   { label: 'Pop argentino', query: 'pop argentino hits', icon: Waves },
   { label: 'Indie y alternativo', query: 'indie alternative music', icon: Sparkles },
-  { label: 'Electrónica', query: 'electronic music mix', icon: Radio },
+  { label: 'Electrónica', query: 'electronic music', icon: Radio },
   { label: 'Rock nacional', query: 'rock nacional argentino', icon: Music2 },
   { label: 'Para bajar un cambio', query: 'chill music', icon: Headphones },
-  { label: 'Lo que suena hoy', query: 'popular music 2026', icon: Play },
+  { label: 'Artistas para descubrir', query: 'independent music', icon: Play },
 ]
 
 export default function Home() {
@@ -17,9 +17,9 @@ export default function Home() {
       <section className={styles.hero} aria-labelledby="home-title">
         <div className={styles.heroGlow} aria-hidden="true" />
         <div className={styles.heroContent}>
-          <span className={styles.eyebrow}><span className={styles.liveDot} /> TU MÚSICA, SIN PAUSA</span>
+          <span className={styles.eyebrow}><span className={styles.liveDot} /> TU MÚSICA, A TU MANERA</span>
           <h1 className={styles.title} id="home-title">Encontrá el sonido<br /><em>que va con vos.</em></h1>
-          <p className={styles.description}>Buscá canciones, descubrí artistas independientes y escuchá audio desde un solo lugar.</p>
+          <p className={styles.description}>Descubrí artistas independientes y encontrá videos musicales de tus artistas favoritos.</p>
           <Link className={styles.primary} to="/buscar">
             <Search size={18} aria-hidden="true" /> Explorar música <ArrowUpRight size={17} aria-hidden="true" />
           </Link>
@@ -49,7 +49,7 @@ export default function Home() {
 
       <section className={styles.bottomPanel}>
         <div className={styles.bottomIcon}><Music2 size={24} /></div>
-        <div><h2>La próxima canción puede ser tu favorita.</h2><p>Buscá por artista, tema o género y descubrí música del catálogo independiente de Audius.</p></div>
+        <div><h2>Una búsqueda, dos formas de descubrir música.</h2><p>Escuchá streams independientes desde Audius y encontrá videos musicales desde YouTube.</p></div>
         <Link to="/buscar" className={styles.textLink}>Encontrar música <ArrowUpRight size={16} /></Link>
       </section>
     </div>
