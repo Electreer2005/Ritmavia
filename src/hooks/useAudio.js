@@ -11,7 +11,15 @@ export function useAudio() {
     const audio = audioRef.current
     if (!audio) return
     const update = () => usePlayerStore.getState().setProgress(audio.currentTime, audio.duration)
-    const ended = () => usePlayerStore.getState().next(true)
+    const ended = () => {
+      const state = usePlayerStore.getState()
+      if (state.repeatMode === 'one') {
+        audio.currentTime = 0
+        audio.play().catch(() => state.setError('No se pudo repetir esta pista. Probá reproducirla nuevamente.'))
+        return
+      }
+      state.next(true)
+    }
     const failed = () => usePlayerStore.getState().setError('No se pudo cargar el audio. Revisá tu conexión o probá otra pista.')
     audio.addEventListener('timeupdate', update)
     audio.addEventListener('loadedmetadata', update)
