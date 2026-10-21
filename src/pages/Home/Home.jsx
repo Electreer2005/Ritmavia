@@ -19,7 +19,7 @@ export default function Home() {
         <div className={styles.heroContent}>
           <span className={styles.eyebrow}><span className={styles.liveDot} /> TU MÚSICA, SIN PAUSA</span>
           <h1 className={styles.title} id="home-title">Encontrá el sonido<br /><em>que va con vos.</em></h1>
-          <p className={styles.description}>Buscá canciones, descubrí artistas y reproducí sus videos desde un solo lugar.</p>
+          <p className={styles.description}>Buscá canciones, descubrí artistas independientes y escuchá audio desde un solo lugar.</p>
           <Link className={styles.primary} to="/buscar">
             <Search size={18} aria-hidden="true" /> Explorar música <ArrowUpRight size={17} aria-hidden="true" />
           </Link>
@@ -49,7 +49,7 @@ export default function Home() {
 
       <section className={styles.bottomPanel}>
         <div className={styles.bottomIcon}><Music2 size={24} /></div>
-        <div><h2>La próxima canción puede ser tu favorita.</h2><p>Buscá por artista, tema o banda. Los resultados llegan desde YouTube, no de un catálogo de demostración.</p></div>
+        <div><h2>La próxima canción puede ser tu favorita.</h2><p>Buscá por artista, tema o género y descubrí música del catálogo independiente de Audius.</p></div>
         <Link to="/buscar" className={styles.textLink}>Encontrar música <ArrowUpRight size={16} /></Link>
       </section>
     </div>
