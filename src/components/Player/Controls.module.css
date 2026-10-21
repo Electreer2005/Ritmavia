@@ -30,6 +30,8 @@
   box-shadow: 0 4px 16px rgb(167 139 250 / 20%);
 }
 .playIcon { transform: translateX(1px); }
+.active { color: var(--primary); position: relative; }
+.active::after { content: ''; position: absolute; width: 4px; height: 4px; border-radius: 50%; background: currentColor; bottom: 4px; left: 50%; transform: translateX(-50%); }
 .iconButton svg,
 .playMain svg { pointer-events: none; }
 .iconButton:disabled,
