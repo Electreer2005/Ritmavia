@@ -3,7 +3,7 @@ import { usePlayerStore } from '../../store/playerStore'
 import { useFavorites } from '../../hooks/useFavorites'
 import styles from './TrackList.module.css'
 
-export default function TrackList({ tracks = [], emptyMessage = 'No encontramos canciones con esa búsqueda.' }) {
+export default function TrackList({ tracks = [], queue = tracks, emptyMessage = 'No encontramos canciones con esa búsqueda.' }) {
   const player = usePlayerStore()
   const { favorites, toggleFavorite } = useFavorites()
 
@@ -25,8 +25,8 @@ export default function TrackList({ tracks = [], emptyMessage = 'No encontramos 
           const playing = active && player.isPlaying
           const liked = favorites.includes(track.id)
           const cover = track.cover || track.thumbnail
-          const artist = track.artistName || track.artist || track.channelTitle || 'YouTube'
-          const toggleTrack = () => active ? player.togglePlay() : player.playTrack(track, tracks)
+          const artist = track.artistName || track.artist || track.channelTitle || 'Música'
+          const toggleTrack = () => active ? player.togglePlay() : player.playTrack(track, queue)
 
           return (
             <li className={`${styles.row} ${active ? styles.selected : ''}`} key={track.id}>
