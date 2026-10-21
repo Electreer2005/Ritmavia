@@ -3,7 +3,7 @@
   inset: auto 0 0;
   z-index: var(--z-player);
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(220px, 1.6fr) minmax(120px, 1fr);
+  grid-template-columns: minmax(0, 1fr) minmax(220px, 1.6fr) minmax(150px, 1fr);
   align-items: center;
   gap: 28px;
   height: calc(var(--player-height) + env(safe-area-inset-bottom, 0px));
@@ -68,6 +68,47 @@
   overflow-wrap: anywhere;
   box-shadow: var(--shadow-card);
 }
+.rightControls { display: flex; align-items: center; justify-content: flex-end; gap: 16px; min-width: 0; }
+.queueToggle { position: relative; display: inline-grid; place-items: center; width: 38px; height: 38px; flex: 0 0 auto; border: 0; border-radius: var(--radius-md); color: var(--text-secondary); background: transparent; cursor: pointer; transition: color var(--transition-fast), background var(--transition-fast); }
+.queueToggle:hover, .queueToggleActive { color: var(--primary); background: var(--bg-selected); }
+.queueToggle:focus-visible, .queueClose:focus-visible, .queueItem:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; }
+.queueCount { position: absolute; top: 0; right: 0; display: grid; place-items: center; min-width: 15px; height: 15px; padding-inline: 3px; border-radius: 99px; background: var(--primary); color: var(--on-primary); font-size: 9px; font-weight: 800; }
+.queuePanel { position: absolute; right: 24px; bottom: calc(100% + 14px); display: flex; flex-direction: column; width: min(390px, calc(100vw - 28px)); max-height: min(520px, 68vh); overflow: hidden; border: 1px solid var(--border-soft); border-radius: var(--radius-lg); background: var(--bg-elevated); box-shadow: 0 20px 60px rgb(0 0 0 / 42%); animation: queueEnter 160ms ease-out; }
+.queueHeader, .queueNextHeader { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 16px 18px; }
+.queueHeader { border-bottom: 1px solid var(--border-soft); }
+.queueHeader > div { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+.queueHeader strong, .queueNextHeader strong { font-size: 14px; color: var(--text-primary); }
+.queueHeader span { color: var(--text-secondary); font-size: 11px; }
+.queueClose { display: grid; place-items: center; width: 32px; height: 32px; border: 0; border-radius: var(--radius-md); color: var(--text-secondary); background: transparent; cursor: pointer; }
+.queueClose:hover { background: var(--bg-hover); color: var(--text-primary); }
+.queueCurrent { padding: 14px 18px 8px; }
+.queueEyebrow { display: block; margin-bottom: 9px; color: var(--primary); font-size: 10px; font-weight: 800; letter-spacing: .09em; }
+.queueTrack, .queueItem { display: flex; align-items: center; gap: 11px; min-width: 0; }
+.queueTrack { padding: 10px; border-radius: var(--radius-md); background: var(--bg-selected); }
+.queueCover { display: grid; place-items: center; flex: 0 0 42px; width: 42px; height: 42px; overflow: hidden; border-radius: var(--radius-sm); color: var(--primary); background: var(--bg-surface); }
+.queueCover img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.queueMeta { display: flex; flex: 1; flex-direction: column; gap: 4px; min-width: 0; text-align: left; }
+.queueMeta strong, .queueMeta span { overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+.queueMeta strong { color: var(--text-primary); font-size: 12px; font-weight: 700; }
+.queueMeta span { color: var(--text-secondary); font-size: 11px; }
+.queuePlaying { display: flex; align-items: center; gap: 2px; height: 18px; padding-inline: 5px; }
+.queuePlaying span { display: block; width: 3px; border-radius: 3px; background: var(--primary); animation: queueBars .8s ease-in-out infinite alternate; }
+.queuePlaying span:nth-child(1) { height: 7px; }
+.queuePlaying span:nth-child(2) { height: 15px; animation-delay: .2s; }
+.queuePlaying span:nth-child(3) { height: 10px; animation-delay: .4s; }
+.queueNextHeader { padding-bottom: 8px; }
+.queueNextHeader button { border: 0; padding: 5px 7px; border-radius: var(--radius-sm); color: var(--text-secondary); background: transparent; font-size: 11px; cursor: pointer; }
+.queueNextHeader button:hover { color: var(--text-primary); background: var(--bg-hover); }
+.queueList { overflow-y: auto; padding: 0 10px 10px; }
+.queueItem { width: 100%; padding: 9px 8px; border: 0; border-radius: var(--radius-md); color: var(--text-secondary); background: transparent; text-align: left; cursor: pointer; }
+.queueItem:hover { background: var(--bg-hover); }
+.queuePosition { width: 20px; flex: 0 0 20px; color: var(--text-muted); font-size: 10px; text-align: center; font-variant-numeric: tabular-nums; }
+.queueItem .queueCover { width: 38px; height: 38px; flex-basis: 38px; }
+.queueEmpty { margin: 0; padding: 20px 10px 26px; color: var(--text-secondary); font-size: 12px; text-align: center; line-height: 1.6; }
+.queueFooter { padding: 10px 18px; border-top: 1px solid var(--border-soft); color: var(--text-muted); font-size: 10px; }
+@keyframes queueEnter { from { opacity: 0; transform: translateY(8px) scale(.985); } to { opacity: 1; transform: translateY(0) scale(1); } }
+@keyframes queueBars { from { transform: scaleY(.45); } to { transform: scaleY(1); } }
+@media (prefers-reduced-motion: reduce) { .queuePanel, .queuePlaying span { animation: none; } }
 .volume { display: flex; align-items: center; justify-content: flex-end; gap: 12px; min-width: 0; color: var(--text-secondary); }
 .volumeInput {
   --fill: var(--volume-progress, 0%);
@@ -114,15 +155,15 @@
 }
 .volumeInput:focus-visible { outline: 2px solid var(--primary); outline-offset: 3px; }
 @media (max-width: 1150px) {
-  .player { grid-template-columns: minmax(0, 1fr) minmax(200px, 1.5fr) 110px; gap: 18px; padding-inline: 20px; }
-  .volumeInput { width: 76px; }
+  .player { grid-template-columns: minmax(0, 1fr) minmax(200px, 1.5fr) 140px; gap: 18px; padding-inline: 20px; }
+  .volumeInput { width: 58px; }
 }
 @media (max-width: 760px) {
   .player {
     bottom: calc(var(--mobile-nav-height) + env(safe-area-inset-bottom, 0px));
     height: var(--player-height);
-    grid-template-columns: minmax(0, 1fr) 100px;
-    grid-template-areas: 'now volume' 'transport transport';
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-areas: 'now actions' 'transport transport';
     grid-template-rows: 44px 76px;
     gap: 8px 12px;
     padding: 14px 16px;
@@ -131,8 +172,8 @@
   .nowPlaying { grid-area: now; gap: 10px; }
   .cover { flex-basis: 44px; width: 44px; height: 44px; }
   .transport { grid-area: transport; gap: 4px; }
-  .volume { grid-area: volume; gap: 8px; }
+  .rightControls { grid-area: actions; gap: 6px; }\n  .volume { gap: 6px; }
   .volumeInput { width: 68px; }
-  .title { font-size: 12px; }
+  .queuePanel { right: 8px; bottom: calc(100% + 8px); max-height: min(440px, 58vh); }\n  .queueToggle { width: 32px; height: 32px; }\n  .title { font-size: 12px; }
   .artist { font-size: 11px; }
 }
