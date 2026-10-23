@@ -39,7 +39,7 @@ export default function TrackList({ tracks = [], queue = tracks, emptyMessage = 
                 <span className={styles.meta}><strong className={styles.title} title={track.title}>{track.title}</strong><span className={styles.artist}>{artist}</span></span>
               </button>
               <span className={styles.album} title={artist}>{artist}</span>
-              <button type="button" className={`${styles.favoriteButton} ${liked ? styles.liked : ''}`} aria-label={(liked ? 'Quitar de favoritos: ' : 'Agregar a favoritos: ') + track.title} aria-pressed={liked} onClick={() => toggleFavorite(track.id)}>
+              <button type="button" className={`${styles.favoriteButton} ${liked ? styles.liked : ''}`} aria-label={(liked ? 'Quitar de favoritos: ' : 'Agregar a favoritos: ') + track.title} aria-pressed={liked} onClick={() => toggleFavorite(track.id, track)}>
                 <Heart size={18} fill={liked ? 'currentColor' : 'none'} aria-hidden="true" />
               </button>
             </li>
