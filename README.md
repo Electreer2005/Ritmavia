@@ -29,35 +29,35 @@ Ritmavia es una experiencia musical web hecha con React y Vite para explorar aud
 
 Requisitos: Node.js compatible con la versión de Vite instalada y npm.
 
-\`\`\`bash
+```bash
 git clone https://github.com/Electreer2005/Ritmavia.git
 cd Ritmavia
 npm install
-\`\`\`
+```
 
 Creá un archivo `.env.local` en la raíz. Agregá las variables que vayas a usar:
 
-\`\`\`env
+```env
 VITE_SUPABASE_URL=https://TU-PROYECTO.supabase.co
 VITE_SUPABASE_PUBLISHABLE_KEY=TU_CLAVE_PUBLICA
 VITE_YOUTUBE_API_KEY=TU_CLAVE_DE_YOUTUBE
-\`\`\`
+```
 
 También se acepta `VITE_SUPABASE_ANON_KEY` en lugar de `VITE_SUPABASE_PUBLISHABLE_KEY` si tu proyecto todavía utiliza ese nombre.
 
 Después ejecutá:
 
-\`\`\`bash
+```bash
 npm run dev
-\`\`\`
+```
 
 Para revisar el proyecto antes de publicarlo:
 
-\`\`\`bash
+```bash
 npm run lint
 npm run build
 node --test tests/auth.test.js
-\`\`\`
+```
 
 ## Configuración de servicios
 
